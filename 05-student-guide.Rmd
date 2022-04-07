@@ -14,7 +14,14 @@ Make sure you can start an RStudio session on AnVIL. Take a look at our guide [h
 
 We will be using the `prcomp()` command which comes loaded into baseR, as well as the `[factoextra package](https://www.rdocumentation.org/packages/factoextra/versions/1.0.7)` for visualization. You can install the `factoextra` package using the install.packages command.
 
+```{r, warning = FALSE, message = FALSE, echo = FALSE}
+# Needed for GHA
+install.packages("factoextra")
+```
+
 ```{r}
+# Install and load factoextra
+# AnVIL::install(c("factoextra"))
 library(factoextra)
 ```
 

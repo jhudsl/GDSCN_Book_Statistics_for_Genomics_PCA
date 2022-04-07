@@ -12,7 +12,7 @@ Make sure you can start an RStudio session on AnVIL. Take a look at our guide [h
 
 ### Libraries
 
-We will be using the prcomp() command which comes loaded into baseR, as well as the [factoextra package](https://www.rdocumentation.org/packages/factoextra/versions/1.0.7) for visualization. You can install the factoextra package using the install.packages command.
+We will be using the `prcomp()` command which comes loaded into baseR, as well as the `[factoextra package](https://www.rdocumentation.org/packages/factoextra/versions/1.0.7)` for visualization. You can install the `factoextra` package using the install.packages command.
 
 ```{r}
 library(factoextra)
@@ -58,8 +58,8 @@ pca.obj <- prcomp(iris[1:4], scale=T)
 str(pca.obj)
 ```
 
-The prcomp() command will create a list containing multiple dataframes and vectors: 
-  _sdev_, a vector of the standard deviations for each PC
+The `prcomp() command will create a list containing multiple dataframes and vectors: 
+  `_sdev_`, a vector of the standard deviations for each PC
   _rotation_, a matrix of the eigenvectors for each variable
   _center_, a vector of the center value for each variable
   _scale_, a vector of the scaling factor for each variable
@@ -148,7 +148,7 @@ fviz_pca_ind(pca.obj, geom.ind = "point", mean.point=F,
              )
 ```
 
-We used the col.ind option to color the dots by species and the addEllipses option to create an ellipse around the center of each species cluster. 
+We used the col.ind option to color the dots by species and the `addEllipses` option to create an ellipse around the center of each species cluster. 
 
 ## Recap
 

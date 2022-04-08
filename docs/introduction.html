@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 1 Introduction | AnVIL Book Name</title>
+  <title>Chapter 2 Introduction | Statistics for Genomics: PCA</title>
   <meta name="description" content="Description about Course/Book." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 1 Introduction | AnVIL Book Name" />
+  <meta property="og:title" content="Chapter 2 Introduction | Statistics for Genomics: PCA" />
   <meta property="og:type" content="book" />
   
   
@@ -16,22 +16,22 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 1 Introduction | AnVIL Book Name" />
+  <meta name="twitter:title" content="Chapter 2 Introduction | Statistics for Genomics: PCA" />
   
   <meta name="twitter:description" content="Description about Course/Book." />
   
 
 
 
-<meta name="date" content="2022-03-29" />
+<meta name="date" content="2022-04-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="assets/anvil_favicon.ico" type="image/x-icon" />
-<link rel="prev" href="index.html"/>
-<link rel="next" href="a-new-chapter.html"/>
+<link rel="prev" href="overview.html"/>
+<link rel="next" href="principal-components-analysis.html"/>
 <script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -118,28 +118,6 @@ code span.vs { color: #4e9a06; } /* VerbatimString */
 code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
-<style type="text/css">
-/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}
-</style>
 
 <link rel="stylesheet" href="assets/AnVIL_style/style_anvil.css" type="text/css" />
 </head>
@@ -161,31 +139,39 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#anvil-collection"><i class="fa fa-check"></i>AnVIL Collection</a></li>
 </ul></li>
-<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<li class="chapter" data-level="1" data-path="overview.html"><a href="overview.html"><i class="fa fa-check"></i><b>1</b> Overview</a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="introduction.html"><a href="introduction.html#motivation"><i class="fa fa-check"></i><b>1.1</b> Motivation</a></li>
-<li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#target-audience"><i class="fa fa-check"></i><b>1.2</b> Target Audience</a></li>
-<li class="chapter" data-level="1.3" data-path="introduction.html"><a href="introduction.html#curriculum"><i class="fa fa-check"></i><b>1.3</b> Curriculum</a></li>
+<li class="chapter" data-level="1.1" data-path="overview.html"><a href="overview.html#activity-context"><i class="fa fa-check"></i><b>1.1</b> Activity Context</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="a-new-chapter.html"><a href="a-new-chapter.html"><i class="fa fa-check"></i><b>2</b> A new chapter</a>
+<li class="chapter" data-level="2" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>2</b> Introduction</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="a-new-chapter.html"><a href="a-new-chapter.html#learning-objectives"><i class="fa fa-check"></i><b>2.1</b> Learning Objectives</a></li>
-<li class="chapter" data-level="2.2" data-path="a-new-chapter.html"><a href="a-new-chapter.html#libraries"><i class="fa fa-check"></i><b>2.2</b> Libraries</a></li>
+<li class="chapter" data-level="2.1" data-path="introduction.html"><a href="introduction.html#the-difficulties-of-high-dimensional-datasets"><i class="fa fa-check"></i><b>2.1</b> The difficulties of high-dimensional datasets</a></li>
+<li class="chapter" data-level="2.2" data-path="introduction.html"><a href="introduction.html#what-is-dimensionality-reduction"><i class="fa fa-check"></i><b>2.2</b> What is dimensionality reduction?</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="topic-of-section.html"><a href="topic-of-section.html"><i class="fa fa-check"></i><b>3</b> Topic of Section</a>
+<li class="chapter" data-level="3" data-path="principal-components-analysis.html"><a href="principal-components-analysis.html"><i class="fa fa-check"></i><b>3</b> Principal Components Analysis</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="topic-of-section.html"><a href="topic-of-section.html#subtopic"><i class="fa fa-check"></i><b>3.1</b> Subtopic</a>
+<li class="chapter" data-level="3.1" data-path="principal-components-analysis.html"><a href="principal-components-analysis.html#before-you-start"><i class="fa fa-check"></i><b>3.1</b> Before You Start</a>
 <ul>
-<li class="chapter" data-level="3.1.1" data-path="topic-of-section.html"><a href="topic-of-section.html#code-examples"><i class="fa fa-check"></i><b>3.1.1</b> Code examples</a></li>
-<li class="chapter" data-level="3.1.2" data-path="topic-of-section.html"><a href="topic-of-section.html#image-example"><i class="fa fa-check"></i><b>3.1.2</b> Image example</a></li>
-<li class="chapter" data-level="3.1.3" data-path="topic-of-section.html"><a href="topic-of-section.html#video-examples"><i class="fa fa-check"></i><b>3.1.3</b> Video examples</a></li>
-<li class="chapter" data-level="3.1.4" data-path="topic-of-section.html"><a href="topic-of-section.html#links-to-files"><i class="fa fa-check"></i><b>3.1.4</b> Links to files</a></li>
-<li class="chapter" data-level="3.1.5" data-path="topic-of-section.html"><a href="topic-of-section.html#links-to-websites"><i class="fa fa-check"></i><b>3.1.5</b> Links to websites</a></li>
-<li class="chapter" data-level="3.1.6" data-path="topic-of-section.html"><a href="topic-of-section.html#citation-examples"><i class="fa fa-check"></i><b>3.1.6</b> Citation examples</a></li>
-<li class="chapter" data-level="3.1.7" data-path="topic-of-section.html"><a href="topic-of-section.html#fyi-boxes"><i class="fa fa-check"></i><b>3.1.7</b> FYI boxes</a></li>
-<li class="chapter" data-level="3.1.8" data-path="topic-of-section.html"><a href="topic-of-section.html#dropdown-summaries"><i class="fa fa-check"></i><b>3.1.8</b> Dropdown summaries</a></li>
+<li class="chapter" data-level="3.1.1" data-path="principal-components-analysis.html"><a href="principal-components-analysis.html#libraries"><i class="fa fa-check"></i><b>3.1.1</b> Libraries</a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="topic-of-section.html"><a href="topic-of-section.html#print-out-session-info"><i class="fa fa-check"></i><b>3.2</b> Print out session info</a></li>
+<li class="chapter" data-level="3.2" data-path="principal-components-analysis.html"><a href="principal-components-analysis.html#introduction-1"><i class="fa fa-check"></i><b>3.2</b> Introduction</a></li>
+<li class="chapter" data-level="3.3" data-path="principal-components-analysis.html"><a href="principal-components-analysis.html#calculating-pcs"><i class="fa fa-check"></i><b>3.3</b> Calculating PCs</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="principal-components-analysis.html"><a href="principal-components-analysis.html#examining-the-data"><i class="fa fa-check"></i><b>3.3.1</b> Examining the data</a></li>
+<li class="chapter" data-level="3.3.2" data-path="principal-components-analysis.html"><a href="principal-components-analysis.html#calculating-the-pcs"><i class="fa fa-check"></i><b>3.3.2</b> Calculating the PCs</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="principal-components-analysis.html"><a href="principal-components-analysis.html#choosing-the-number-of-pcs"><i class="fa fa-check"></i><b>3.4</b> Choosing the number of PCs</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="principal-components-analysis.html"><a href="principal-components-analysis.html#examining-pcs-in-table-format"><i class="fa fa-check"></i><b>3.4.1</b> Examining PCs in table format</a></li>
+<li class="chapter" data-level="3.4.2" data-path="principal-components-analysis.html"><a href="principal-components-analysis.html#examining-pcs-in-a-scree-plot"><i class="fa fa-check"></i><b>3.4.2</b> Examining PCs in a scree plot</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="principal-components-analysis.html"><a href="principal-components-analysis.html#correlation-between-variables-and-pcs"><i class="fa fa-check"></i><b>3.5</b> Correlation between variables and PCs</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="principal-components-analysis.html"><a href="principal-components-analysis.html#examining-the-contribution-of-each-variable-to-pcs-in-table-format"><i class="fa fa-check"></i><b>3.5.1</b> Examining the contribution of each variable to PCs in table format</a></li>
+<li class="chapter" data-level="3.5.2" data-path="principal-components-analysis.html"><a href="principal-components-analysis.html#examining-the-contribution-of-each-variable-to-pcs-with-a-correlation-circle"><i class="fa fa-check"></i><b>3.5.2</b> Examining the contribution of each variable to PCs with a correlation circle</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="principal-components-analysis.html"><a href="principal-components-analysis.html#visualizing-structure-using-pcs"><i class="fa fa-check"></i><b>3.6</b> Visualizing structure using PCs</a></li>
+<li class="chapter" data-level="3.7" data-path="principal-components-analysis.html"><a href="principal-components-analysis.html#recap"><i class="fa fa-check"></i><b>3.7</b> Recap</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="about-the-authors.html"><a href="about-the-authors.html"><i class="fa fa-check"></i>About the Authors</a></li>
 <li class="chapter" data-level="4" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>4</b> References</a></li>
@@ -203,7 +189,7 @@ div.csl-indent {
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">AnVIL Book Name</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Statistics for Genomics: PCA</a>
           </h1>
         </div>
 
@@ -223,18 +209,15 @@ div.csl-indent {
 <div class="hero-image-container"> 
   <img class= "hero-image" src="assets/AnVIL_style/dasl_thin_main_image.png">
 </div>
-<div id="introduction" class="section level1" number="1">
-<h1><span class="header-section-number">Chapter 1</span> Introduction</h1>
-<div id="motivation" class="section level2" number="1.1">
-<h2><span class="header-section-number">1.1</span> Motivation</h2>
+<div id="introduction" class="section level1" number="2">
+<h1><span class="header-section-number">Chapter 2</span> Introduction</h1>
+<div id="the-difficulties-of-high-dimensional-datasets" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> The difficulties of high-dimensional datasets</h2>
+<p>Biological data, especially molecular data, is inherently high-dimensional. For example, expression matrices can have data for tens of thousands of genes, and each gene represents a different dimension of the data. The sample sizes necessary to fit statistical models to such a high-dimensional dataset are astronomically high and impractical for most modern studies. High-dimensional data also greatly increases the computational resources and time necessary for any bioinformatic analysis.</p>
 </div>
-<div id="target-audience" class="section level2" number="1.2">
-<h2><span class="header-section-number">1.2</span> Target Audience</h2>
-<p>The course is intended for …</p>
-</div>
-<div id="curriculum" class="section level2" number="1.3">
-<h2><span class="header-section-number">1.3</span> Curriculum</h2>
-<p>The course covers…</p>
+<div id="what-is-dimensionality-reduction" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> What is dimensionality reduction?</h2>
+<p>Dimensionality reduction methods allow scientists to get around these issues. They are techniques that reduce the number of input variables in a dataset. These methods are possible for biological data because so much of the data variables are correlated. If we go back to our example using expression data, while each gene represents a different dimension, genes involved in similar metabolic pathways will be upregulated or downregulated together and thus those dimensions are not independent. Dimensional reduction methods can identify these correlations and combine them in such a way to reduce the number of data dimensions to a workable amount while minimizing the information loss. As an added benefit, combining correlated dimensions can result in less noisy data, since the data are averaged across multiple dimensions to provide a better representation of patterns. Dimensional reduction also makes it easier for scientists to visualize data in ways that are comprehensible to the human brain.</p>
 
 </div>
 </div>
@@ -251,8 +234,8 @@ div.csl-indent {
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="a-new-chapter.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="overview.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="principal-components-analysis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

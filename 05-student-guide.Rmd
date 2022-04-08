@@ -2,7 +2,8 @@
 ottrpal::set_knitr_image_path()
 ```
 
-#(PART\*) PRINCIPAL COMPONENTS ANALYSIS {-}
+
+# Principal Components Analysis
 
 ## Before You Start
 

@@ -46,7 +46,7 @@ The PC variables created by this method are a linear combination of the original
 
 ## Calculating PCs
 
-###Examining the data
+### Examining the data
 
 There are many packages available for R and RStudio that can perform PCA. These packages will calculate PCA in similar ways, although some of their default parameters (such as how many PCs the algorithm will calculate and store) may be different. Be sure to read the manuals for any package you choose to use.
 
@@ -71,15 +71,15 @@ str(pca.obj)
 
 The `prcomp()` command will create a list containing multiple dataframes and vectors: 
 
-  *_sdev_, a vector of the standard deviations for each PC
+  - _sdev_, a vector of the standard deviations for each PC
 
-  *_rotation_, a matrix of the eigenvectors for each variable
+  - _rotation_, a matrix of the eigenvectors for each variable
   
-  *_center_, a vector of the center value for each variable
+  - _center_, a vector of the center value for each variable
   
-  *_scale_, a vector of the scaling factor for each variable
+  - _scale_, a vector of the scaling factor for each variable
   
-  *_x_, a matrix of the individual PC values for each flower
+  - _x_, a matrix of the individual PC values for each flower
 
 
 ## Choosing the number of PCs
@@ -145,17 +145,17 @@ fviz_pca_var(pca.obj, col.var = "black", repel=T)
 
 The size and position of the vectors (arrows) in the correlation circle can tell us quite a lot about the variables.
   
-  *Positively correlated variables are grouped together.
+  - Positively correlated variables are grouped together.
 
-  *Negatively correlated variables are positioned on opposite sides of the plot origin (opposed quadrants) .
+  - Negatively correlated variables are positioned on opposite sides of the plot origin (opposed quadrants) .
   
-  *Vectors that end close to the circle outline greatly contribute to a given PC.
+  - Vectors that end close to the circle outline greatly contribute to a given PC.
 
-  *Shorter vectors contribute very little.
+  - Shorter vectors contribute very little.
   
-  *Vectors that are primarily horizontal mostly contribute to the first PC (the x-axis). 
+  - Vectors that are primarily horizontal mostly contribute to the first PC (the x-axis). 
 
-  *Vectors that are more vertical contribute primarily to the second PC (the y-axis).
+  - Vectors that are more vertical contribute primarily to the second PC (the y-axis).
 
 
 ## Visualizing structure using PCs

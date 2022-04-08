@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>About the Authors | AnVIL Book Name</title>
+  <title>About the Authors | Statistics for Genomics: PCA</title>
   <meta name="description" content="Description about Course/Book." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="About the Authors | AnVIL Book Name" />
+  <meta property="og:title" content="About the Authors | Statistics for Genomics: PCA" />
   <meta property="og:type" content="book" />
   
   
@@ -16,21 +16,21 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="About the Authors | AnVIL Book Name" />
+  <meta name="twitter:title" content="About the Authors | Statistics for Genomics: PCA" />
   
   <meta name="twitter:description" content="Description about Course/Book." />
   
 
 
 
-<meta name="date" content="2022-03-29" />
+<meta name="date" content="2022-04-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="assets/anvil_favicon.ico" type="image/x-icon" />
-<link rel="prev" href="topic-of-section.html"/>
+<link rel="prev" href="principal-components-analysis.html"/>
 <link rel="next" href="references.html"/>
 <script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -118,28 +118,6 @@ code span.vs { color: #4e9a06; } /* VerbatimString */
 code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
-<style type="text/css">
-/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}
-</style>
 
 <link rel="stylesheet" href="assets/AnVIL_style/style_anvil.css" type="text/css" />
 </head>
@@ -161,31 +139,39 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#anvil-collection"><i class="fa fa-check"></i>AnVIL Collection</a></li>
 </ul></li>
-<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<li class="chapter" data-level="1" data-path="overview.html"><a href="overview.html"><i class="fa fa-check"></i><b>1</b> Overview</a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="introduction.html"><a href="introduction.html#motivation"><i class="fa fa-check"></i><b>1.1</b> Motivation</a></li>
-<li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#target-audience"><i class="fa fa-check"></i><b>1.2</b> Target Audience</a></li>
-<li class="chapter" data-level="1.3" data-path="introduction.html"><a href="introduction.html#curriculum"><i class="fa fa-check"></i><b>1.3</b> Curriculum</a></li>
+<li class="chapter" data-level="1.1" data-path="overview.html"><a href="overview.html#activity-context"><i class="fa fa-check"></i><b>1.1</b> Activity Context</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="a-new-chapter.html"><a href="a-new-chapter.html"><i class="fa fa-check"></i><b>2</b> A new chapter</a>
+<li class="chapter" data-level="2" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>2</b> Introduction</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="a-new-chapter.html"><a href="a-new-chapter.html#learning-objectives"><i class="fa fa-check"></i><b>2.1</b> Learning Objectives</a></li>
-<li class="chapter" data-level="2.2" data-path="a-new-chapter.html"><a href="a-new-chapter.html#libraries"><i class="fa fa-check"></i><b>2.2</b> Libraries</a></li>
+<li class="chapter" data-level="2.1" data-path="introduction.html"><a href="introduction.html#the-difficulties-of-high-dimensional-datasets"><i class="fa fa-check"></i><b>2.1</b> The difficulties of high-dimensional datasets</a></li>
+<li class="chapter" data-level="2.2" data-path="introduction.html"><a href="introduction.html#what-is-dimensionality-reduction"><i class="fa fa-check"></i><b>2.2</b> What is dimensionality reduction?</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="topic-of-section.html"><a href="topic-of-section.html"><i class="fa fa-check"></i><b>3</b> Topic of Section</a>
+<li class="chapter" data-level="3" data-path="principal-components-analysis.html"><a href="principal-components-analysis.html"><i class="fa fa-check"></i><b>3</b> Principal Components Analysis</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="topic-of-section.html"><a href="topic-of-section.html#subtopic"><i class="fa fa-check"></i><b>3.1</b> Subtopic</a>
+<li class="chapter" data-level="3.1" data-path="principal-components-analysis.html"><a href="principal-components-analysis.html#before-you-start"><i class="fa fa-check"></i><b>3.1</b> Before You Start</a>
 <ul>
-<li class="chapter" data-level="3.1.1" data-path="topic-of-section.html"><a href="topic-of-section.html#code-examples"><i class="fa fa-check"></i><b>3.1.1</b> Code examples</a></li>
-<li class="chapter" data-level="3.1.2" data-path="topic-of-section.html"><a href="topic-of-section.html#image-example"><i class="fa fa-check"></i><b>3.1.2</b> Image example</a></li>
-<li class="chapter" data-level="3.1.3" data-path="topic-of-section.html"><a href="topic-of-section.html#video-examples"><i class="fa fa-check"></i><b>3.1.3</b> Video examples</a></li>
-<li class="chapter" data-level="3.1.4" data-path="topic-of-section.html"><a href="topic-of-section.html#links-to-files"><i class="fa fa-check"></i><b>3.1.4</b> Links to files</a></li>
-<li class="chapter" data-level="3.1.5" data-path="topic-of-section.html"><a href="topic-of-section.html#links-to-websites"><i class="fa fa-check"></i><b>3.1.5</b> Links to websites</a></li>
-<li class="chapter" data-level="3.1.6" data-path="topic-of-section.html"><a href="topic-of-section.html#citation-examples"><i class="fa fa-check"></i><b>3.1.6</b> Citation examples</a></li>
-<li class="chapter" data-level="3.1.7" data-path="topic-of-section.html"><a href="topic-of-section.html#fyi-boxes"><i class="fa fa-check"></i><b>3.1.7</b> FYI boxes</a></li>
-<li class="chapter" data-level="3.1.8" data-path="topic-of-section.html"><a href="topic-of-section.html#dropdown-summaries"><i class="fa fa-check"></i><b>3.1.8</b> Dropdown summaries</a></li>
+<li class="chapter" data-level="3.1.1" data-path="principal-components-analysis.html"><a href="principal-components-analysis.html#libraries"><i class="fa fa-check"></i><b>3.1.1</b> Libraries</a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="topic-of-section.html"><a href="topic-of-section.html#print-out-session-info"><i class="fa fa-check"></i><b>3.2</b> Print out session info</a></li>
+<li class="chapter" data-level="3.2" data-path="principal-components-analysis.html"><a href="principal-components-analysis.html#introduction-1"><i class="fa fa-check"></i><b>3.2</b> Introduction</a></li>
+<li class="chapter" data-level="3.3" data-path="principal-components-analysis.html"><a href="principal-components-analysis.html#calculating-pcs"><i class="fa fa-check"></i><b>3.3</b> Calculating PCs</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="principal-components-analysis.html"><a href="principal-components-analysis.html#examining-the-data"><i class="fa fa-check"></i><b>3.3.1</b> Examining the data</a></li>
+<li class="chapter" data-level="3.3.2" data-path="principal-components-analysis.html"><a href="principal-components-analysis.html#calculating-the-pcs"><i class="fa fa-check"></i><b>3.3.2</b> Calculating the PCs</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="principal-components-analysis.html"><a href="principal-components-analysis.html#choosing-the-number-of-pcs"><i class="fa fa-check"></i><b>3.4</b> Choosing the number of PCs</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="principal-components-analysis.html"><a href="principal-components-analysis.html#examining-pcs-in-table-format"><i class="fa fa-check"></i><b>3.4.1</b> Examining PCs in table format</a></li>
+<li class="chapter" data-level="3.4.2" data-path="principal-components-analysis.html"><a href="principal-components-analysis.html#examining-pcs-in-a-scree-plot"><i class="fa fa-check"></i><b>3.4.2</b> Examining PCs in a scree plot</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="principal-components-analysis.html"><a href="principal-components-analysis.html#correlation-between-variables-and-pcs"><i class="fa fa-check"></i><b>3.5</b> Correlation between variables and PCs</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="principal-components-analysis.html"><a href="principal-components-analysis.html#examining-the-contribution-of-each-variable-to-pcs-in-table-format"><i class="fa fa-check"></i><b>3.5.1</b> Examining the contribution of each variable to PCs in table format</a></li>
+<li class="chapter" data-level="3.5.2" data-path="principal-components-analysis.html"><a href="principal-components-analysis.html#examining-the-contribution-of-each-variable-to-pcs-with-a-correlation-circle"><i class="fa fa-check"></i><b>3.5.2</b> Examining the contribution of each variable to PCs with a correlation circle</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="principal-components-analysis.html"><a href="principal-components-analysis.html#visualizing-structure-using-pcs"><i class="fa fa-check"></i><b>3.6</b> Visualizing structure using PCs</a></li>
+<li class="chapter" data-level="3.7" data-path="principal-components-analysis.html"><a href="principal-components-analysis.html#recap"><i class="fa fa-check"></i><b>3.7</b> Recap</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="about-the-authors.html"><a href="about-the-authors.html"><i class="fa fa-check"></i>About the Authors</a></li>
 <li class="chapter" data-level="4" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>4</b> References</a></li>
@@ -203,7 +189,7 @@ div.csl-indent {
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">AnVIL Book Name</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Statistics for Genomics: PCA</a>
           </h1>
         </div>
 
@@ -245,116 +231,64 @@ div.csl-indent {
 <td></td>
 </tr>
 <tr class="even">
-<td>Lead Content Instructor(s)</td>
-<td><a href="link%20to%20personal%20website">FirstName LastName</a></td>
+<td>Lead Content Instructor</td>
+<td>Elizabeth Humphries</td>
 </tr>
 <tr class="odd">
-<td>Lecturer(s) (include chapter name/link in parentheses if only for specific chapters) - make new line if more than one chapter involved</td>
-<td>Delivered the course in some way - video or audio</td>
+<td>Content Idea Contributor</td>
+<td><a href="https://www.avahoffman.com/">Ava Hoffman</a></td>
 </tr>
 <tr class="even">
-<td>Content Author(s) (include chapter name/link in parentheses if only for specific chapters) - make new line if more than one chapter involved</td>
-<td>If any other authors besides lead instructor</td>
+<td>Content Directors</td>
+<td>Kasper Hansen, <a href="https://jtleek.com/">Jeff Leek</a>, <a href="https://carnegiescience.edu/frederick-tan">Frederick Tan</a></td>
 </tr>
 <tr class="odd">
-<td>Content Contributor(s) (include section name/link in parentheses) - make new line if more than one section involved</td>
-<td>Wrote less than a chapter</td>
-</tr>
-<tr class="even">
-<td>Content Editor(s)/Reviewer(s)</td>
-<td>Checked your content</td>
-</tr>
-<tr class="odd">
-<td>Content Director(s)</td>
-<td>Helped guide the content direction</td>
-</tr>
-<tr class="even">
-<td>Content Consultants (include chapter name/link in parentheses or word “General”) - make new line if more than one chapter involved</td>
-<td>Gave high level advice on content</td>
-</tr>
-<tr class="odd">
-<td>Acknowledgments</td>
-<td>Gave small assistance to content but not to the level of consulting</td>
-</tr>
-<tr class="even">
 <td><strong>Production</strong></td>
 <td></td>
 </tr>
-<tr class="odd">
-<td>Content Publisher(s)</td>
-<td>Helped with publishing platform</td>
-</tr>
 <tr class="even">
-<td>Content Publishing Reviewer(s)</td>
-<td>Reviewed overall content and aesthetics on publishing platform</td>
+<td>Content Publisher</td>
+<td><a href="https://publichealth.jhu.edu/faculty/4130/ira-gooding">Ira Gooding</a></td>
 </tr>
 <tr class="odd">
 <td><strong>Technical</strong></td>
 <td></td>
 </tr>
 <tr class="even">
-<td>Course Publishing Engineer(s)</td>
-<td>Helped with the code for the technical aspects related to the specific course generation</td>
+<td>Template Publishing Engineers</td>
+<td><a href="https://www.cansavvy.com/">Candace Savonen</a>, <a href="https://carriewright11.github.io/">Carrie Wright</a>, <a href="https://www.avahoffman.com/">Ava Hoffman</a></td>
 </tr>
 <tr class="odd">
-<td>Template Publishing Engineers</td>
-<td><a href="https://www.cansavvy.com/">Candace Savonen</a>, <a href="https://carriewright11.github.io/">Carrie Wright</a></td>
-</tr>
-<tr class="even">
 <td>Publishing Maintenance Engineer</td>
 <td><a href="https://www.cansavvy.com/">Candace Savonen</a></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>Technical Publishing Stylists</td>
 <td><a href="https://carriewright11.github.io/">Carrie Wright</a>, <a href="https://www.cansavvy.com/">Candace Savonen</a></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>Package Developers (<a href="https://github.com/jhudsl/ottrpal">ottrpal</a>)</td>
 <td><a href="https://johnmuschelli.com/">John Muschelli</a>, <a href="https://www.cansavvy.com/">Candace Savonen</a>, <a href="https://carriewright11.github.io/">Carrie Wright</a></td>
-</tr>
-<tr class="odd">
-<td><strong>Art and Design</strong></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>Illustrator(s)</td>
-<td>Created graphics for the course</td>
-</tr>
-<tr class="odd">
-<td>Figure Artist(s)</td>
-<td>Created figures/plots for course</td>
-</tr>
-<tr class="even">
-<td>Videographer(s)</td>
-<td>Filmed videos</td>
-</tr>
-<tr class="odd">
-<td>Videography Editor(s)</td>
-<td>Edited film</td>
-</tr>
-<tr class="even">
-<td>Audiographer(s)</td>
-<td>Recorded audio</td>
-</tr>
-<tr class="odd">
-<td>Audiography Editor(s)</td>
-<td>Edited audio recordings</td>
 </tr>
 <tr class="even">
 <td><strong>Funding</strong></td>
 <td></td>
 </tr>
 <tr class="odd">
-<td>Funder(s)</td>
-<td>Institution/individual who funded course including grant number</td>
+<td>Funder</td>
+<td><a href="https://www.genome.gov/">National Human Genome Research Institute (NHGRI)</a></td>
 </tr>
 <tr class="even">
 <td>Funding Staff</td>
-<td>Staff members who help with funding</td>
+<td>Fallon Bachman, Jennifer Vessio, Emily Voeglein</td>
 </tr>
 </tbody>
 </table>
 <p> </p>
+<!-- |Content Contributor | [Jeff Leek], [Michael Schatz], [Frederick Tan]| -->
+<!-- |Content Editors| [Katherine Cox], Natalie Kucher, [Frederick Tan]| -->
+<!-- |Content Directors | Kasper Hansen, [Jeff Leek], [Frederick Tan]| -->
+<!-- |Content Consultants (General) | [Jeff Leek], [Frederick Tan], [Carrie Wright] | -->
 <pre><code>## ─ Session info ───────────────────────────────────────────────────────────────
 ##  setting  value                       
 ##  version  R version 4.0.2 (2020-06-22)
@@ -365,7 +299,7 @@ div.csl-indent {
 ##  collate  en_US.UTF-8                 
 ##  ctype    en_US.UTF-8                 
 ##  tz       Etc/UTC                     
-##  date     2022-03-29                  
+##  date     2022-04-08                  
 ## 
 ## ─ Packages ───────────────────────────────────────────────────────────────────
 ##  package     * version    date       lib source                            
@@ -412,10 +346,8 @@ div.csl-indent {
 ## [2] /usr/local/lib/R/library</code></pre>
 <!-- Author information -->
 <!-- Links -->
-<!-- Fill out this table using these instructions: https://github.com/jhudsl/OTTR_Template/wiki/How-to-give-credits
-
+<!-- Fill out this table using these instructions: https://github.com/jhudsl/DaSL_Course_Template_Bookdown/wiki/How-to-give-credits
 For JHU courses, You will need to add Ira as a credit:
-
 |Content Publisher|[Ira Gooding]|
 ...
 [Ira Gooding]: https://publichealth.jhu.edu/faculty/4130/ira-gooding
@@ -435,7 +367,7 @@ For JHU courses, You will need to add Ira as a credit:
           </div>
         </div>
       </div>
-<a href="topic-of-section.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="principal-components-analysis.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>

@@ -1,6 +1,6 @@
 ---
-title: "AnVIL Book Name"
-date: "March 29, 2022"
+title: "Statistics for Genomics: PCA"
+date: "April 08, 2022"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: book.bib

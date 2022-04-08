@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 Principal Components Analysis | Statistics for Genomics: PCA</title>
+  <meta name="description" content="Description about Course/Book." />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 Principal Components Analysis | Statistics for Genomics: PCA" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Description about Course/Book." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 Principal Components Analysis | Statistics for Genomics: PCA" />
+  
+  <meta name="twitter:description" content="Description about Course/Book." />
+  
+
+
+
+<meta name="date" content="2022-04-08" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="shortcut icon" href="assets/anvil_favicon.ico" type="image/x-icon" />
+<link rel="prev" href="introduction.html"/>
+<link rel="next" href="about-the-authors.html"/>
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="assets/AnVIL_style/style_anvil.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<a href="https://anvilproject.org/" target="_blank"><img src="assets/AnVIL_style/logo-anvil.png" style="width: 80%; padding-left: 15px; padding-top: 8px;"</a>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>About this Book</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#anvil-collection"><i class="fa fa-check"></i>AnVIL Collection</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="overview.html"><a href="overview.html"><i class="fa fa-check"></i><b>1</b> Overview</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="overview.html"><a href="overview.html#activity-context"><i class="fa fa-check"></i><b>1.1</b> Activity Context</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>2</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="introduction.html"><a href="introduction.html#the-difficulties-of-high-dimensional-datasets"><i class="fa fa-check"></i><b>2.1</b> The difficulties of high-dimensional datasets</a></li>
+<li class="chapter" data-level="2.2" data-path="introduction.html"><a href="introduction.html#what-is-dimensionality-reduction"><i class="fa fa-check"></i><b>2.2</b> What is dimensionality reduction?</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="principal-components-analysis.html"><a href="principal-components-analysis.html"><i class="fa fa-check"></i><b>3</b> Principal Components Analysis</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="principal-components-analysis.html"><a href="principal-components-analysis.html#before-you-start"><i class="fa fa-check"></i><b>3.1</b> Before You Start</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="principal-components-analysis.html"><a href="principal-components-analysis.html#libraries"><i class="fa fa-check"></i><b>3.1.1</b> Libraries</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="principal-components-analysis.html"><a href="principal-components-analysis.html#introduction-1"><i class="fa fa-check"></i><b>3.2</b> Introduction</a></li>
+<li class="chapter" data-level="3.3" data-path="principal-components-analysis.html"><a href="principal-components-analysis.html#calculating-pcs"><i class="fa fa-check"></i><b>3.3</b> Calculating PCs</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="principal-components-analysis.html"><a href="principal-components-analysis.html#examining-the-data"><i class="fa fa-check"></i><b>3.3.1</b> Examining the data</a></li>
+<li class="chapter" data-level="3.3.2" data-path="principal-components-analysis.html"><a href="principal-components-analysis.html#calculating-the-pcs"><i class="fa fa-check"></i><b>3.3.2</b> Calculating the PCs</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="principal-components-analysis.html"><a href="principal-components-analysis.html#choosing-the-number-of-pcs"><i class="fa fa-check"></i><b>3.4</b> Choosing the number of PCs</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="principal-components-analysis.html"><a href="principal-components-analysis.html#examining-pcs-in-table-format"><i class="fa fa-check"></i><b>3.4.1</b> Examining PCs in table format</a></li>
+<li class="chapter" data-level="3.4.2" data-path="principal-components-analysis.html"><a href="principal-components-analysis.html#examining-pcs-in-a-scree-plot"><i class="fa fa-check"></i><b>3.4.2</b> Examining PCs in a scree plot</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="principal-components-analysis.html"><a href="principal-components-analysis.html#correlation-between-variables-and-pcs"><i class="fa fa-check"></i><b>3.5</b> Correlation between variables and PCs</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="principal-components-analysis.html"><a href="principal-components-analysis.html#examining-the-contribution-of-each-variable-to-pcs-in-table-format"><i class="fa fa-check"></i><b>3.5.1</b> Examining the contribution of each variable to PCs in table format</a></li>
+<li class="chapter" data-level="3.5.2" data-path="principal-components-analysis.html"><a href="principal-components-analysis.html#examining-the-contribution-of-each-variable-to-pcs-with-a-correlation-circle"><i class="fa fa-check"></i><b>3.5.2</b> Examining the contribution of each variable to PCs with a correlation circle</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="principal-components-analysis.html"><a href="principal-components-analysis.html#visualizing-structure-using-pcs"><i class="fa fa-check"></i><b>3.6</b> Visualizing structure using PCs</a></li>
+<li class="chapter" data-level="3.7" data-path="principal-components-analysis.html"><a href="principal-components-analysis.html#recap"><i class="fa fa-check"></i><b>3.7</b> Recap</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="about-the-authors.html"><a href="about-the-authors.html"><i class="fa fa-check"></i>About the Authors</a></li>
+<li class="chapter" data-level="4" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>4</b> References</a></li>
+<li class="divider"></li>
+<p style="text-align:center;"> <a href="https://github.com/jhudsl/DaSL_Course_Template_Bookdown" target="blank" > This content was published with</a> <a href="https://bookdown.org/" target="blank"> bookdown by: </a> </p>
+<p style="text-align:center;"> <a href="http://jhudatascience.org/"> The Johns Hopkins Data Science Lab </a></p>
+<a href="http://jhudatascience.org/"><img src="https://jhudatascience.org/images/dasl.png" style=" width: 80%; padding-left: 40px; padding-top: 8px; vertical-align: top "</a>
+<p style="text-align:center; font-size: 12px;"> <a href="https://github.com/rstudio4edu/rstudio4edu-book/"> Style adapted from: rstudio4edu-book </a> <a href ="https://creativecommons.org/licenses/by/2.0/"> (CC-BY 2.0) </a></p>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Statistics for Genomics: PCA</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<head>
+  <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=10.0,initial-scale=1.0">
+  <!--script src="https://kit.fontawesome.com/6a26f47516.js"></script-->
+  <!--<script src="assets/hideOutput.js"></script>-->
+  <link href="assets/AnvIL_style/style_anvil.css" rel="stylesheet">
+</head>
+        
+
+
+<div class="hero-image-container"> 
+  <img class= "hero-image" src="assets/AnVIL_style/dasl_thin_main_image.png">
+</div>
+<div id="principal-components-analysis" class="section level1" number="3">
+<h1><span class="header-section-number">Chapter 3</span> Principal Components Analysis</h1>
+<div id="before-you-start" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> Before You Start</h2>
+<p>Make sure you can start an RStudio session on AnVIL. Take a look at our guide <a href="https://jhudatascience.org/GDSCN_Book_Statistics_for_Genomics_Differential_Expression/getting-set-up.html#introduction">here</a>.</p>
+<div id="libraries" class="section level3" number="3.1.1">
+<h3><span class="header-section-number">3.1.1</span> Libraries</h3>
+<p>We will be using the <code>prcomp()</code> command which comes loaded into baseR, as well as the <a href="https://www.rdocumentation.org/packages/factoextra/versions/1.0.7"><code>factoextra</code> package</a> for visualization. You can install the <code>factoextra</code> package using the install.packages command.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="principal-components-analysis.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install and load factoextra</span></span>
+<span id="cb1-2"><a href="principal-components-analysis.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># AnVIL::install(&quot;factoextra&quot;)</span></span>
+<span id="cb1-3"><a href="principal-components-analysis.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(factoextra)</span></code></pre></div>
+</div>
+</div>
+<div id="introduction-1" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> Introduction</h2>
+<p>Principal components analysis (PCA) is one of the oldest and most commonly used dimensional reduction techniques. PCA is an unsupervised machine learning algorithm that combines correlated dimensions into a single new variable. This new variable represents an axis or line in the dataset that describes the maximum amount of variation and becomes the first principal component (PC). After the first PC is created, the algorithm then identifies a new axis that is orthagonal (statistically independent) to the first PC while also describing the maximum amount of previously undescribed variation.</p>
+<p>This process continues, with each PC capturing a decreasing amount of variation, until the maximum number of PCS is reached (max number of PCs = total number of variables in the original dataset).</p>
+<p>The first PCs will capture most heterogeneity (and thus most of the signal) in our high-dimensional dataset by definition, while the variation in later PCs will mostly represent noise. Thus, we can use the first PCs to both examine structure in our dataset as well as for downstream analyses to reduce computational work and improve the fit of our statistical models.</p>
+<div class="fyi">
+<p>GOING DEEPER: The math behind PCA</p>
+<p>PCA is a method of matrix factorization. Essentially, the PCA approach allows a researcher to break down (or decompose) a large data matrix into smaller constituent parts (similar to the way we can break the number 30 into the factors 5 and 6). Each smaller matrix can be summarized by a vector, called the eigenvector. This vector can be resized; how much it is resized can be summarized by a number called the eigenvalue. You can also think of the eigenvalue as the variance of the eigenvector.</p>
+<p>For a large matrix (like most biological datasets), there are many possible ways to decompose the matrix. In our example earlier with the number 30 we could choose to start with the number 5 or the number 6. With PCA, We always start with the eigenvector that has the largest possible eigenvalue. This eigenvector is what we call the first PC. What is left of the original data matrix is then decomposed further into smaller and smaller pieces, with each subsequent eigenvector chosen because it has the largest possible eigenvalue.</p>
+<p>The PC variables created by this method are a linear combination of the original variables.The commands in this exercise use the Singular Value Decomposition (SVD) algorithm for matrix factorization. SVD breaks a large matrix down into three smaller matrices and works on both non-symmetric and symmetric matrices.</p>
+<p>If you’d like to learn more, check out <a href="www.ncbi.nlm.nih.gov/pmc/articles/PMC4792409/">Principal component analysis: a review and recent developments</a> or <a href="https://towardsdatascience.com/understanding-singular-value-decomposition-and-its-application-in-data-science-388a54be95d#:~:text=In%20linear%20algebra%2C%20the%20Singular%20Value%20Decomposition%20%28SVD%29,also%20has%20some%20important%20applications%20in%20data%20science">Understanding Singular Value Decomposition</a>.</p>
+</div>
+</div>
+<div id="calculating-pcs" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> Calculating PCs</h2>
+<div id="examining-the-data" class="section level3" number="3.3.1">
+<h3><span class="header-section-number">3.3.1</span> Examining the data</h3>
+<p>There are many packages available for R and RStudio that can perform PCA. These packages will calculate PCA in similar ways, although some of their default parameters (such as how many PCs the algorithm will calculate and store) may be different. Be sure to read the manuals for any package you choose to use.</p>
+<p>For this example, we will use the iris dataset that is preloaded into R. The statistician RA Fisher popularized this dataset for statistical work, although the original data was collected by Edgar Anderson. The dataset contains 4 measurements (petal length, petal width, sepal length, and sepal width) for 150 individuals from 3 different iris species.</p>
+<p>Let’s start by looking at the first few rows of the dataset.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="principal-components-analysis.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(iris)</span></code></pre></div>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa
+## 6          5.4         3.9          1.7         0.4  setosa</code></pre>
+<p>Each row represents a single individual flower. The first four columns are <em>active variables</em>, or the variables we will use for the principal components analysis. The fifth column is the species of each individual ( <em>Iris setosa</em>, <em>Iris virginica</em>, or <em>Iris versicolor</em>). This is a <em>supplementary variable</em>, or additional information about each sample that we will not use in the PCA.</p>
+</div>
+<div id="calculating-the-pcs" class="section level3" number="3.3.2">
+<h3><span class="header-section-number">3.3.2</span> Calculating the PCs</h3>
+<p>The actual PCA calculation is quite simple. We specify the calculations are only done on the first four columns of the iris dataset, and we are also scaling each variable so the mean is 0 and the standard deviation is 1.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="principal-components-analysis.html#cb4-1" aria-hidden="true" tabindex="-1"></a>pca.obj <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(iris[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>], <span class="at">scale=</span>T)</span>
+<span id="cb4-2"><a href="principal-components-analysis.html#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(pca.obj)</span></code></pre></div>
+<pre><code>## List of 5
+##  $ sdev    : num [1:4] 1.708 0.956 0.383 0.144
+##  $ rotation: num [1:4, 1:4] 0.521 -0.269 0.58 0.565 -0.377 ...
+##   ..- attr(*, &quot;dimnames&quot;)=List of 2
+##   .. ..$ : chr [1:4] &quot;Sepal.Length&quot; &quot;Sepal.Width&quot; &quot;Petal.Length&quot; &quot;Petal.Width&quot;
+##   .. ..$ : chr [1:4] &quot;PC1&quot; &quot;PC2&quot; &quot;PC3&quot; &quot;PC4&quot;
+##  $ center  : Named num [1:4] 5.84 3.06 3.76 1.2
+##   ..- attr(*, &quot;names&quot;)= chr [1:4] &quot;Sepal.Length&quot; &quot;Sepal.Width&quot; &quot;Petal.Length&quot; &quot;Petal.Width&quot;
+##  $ scale   : Named num [1:4] 0.828 0.436 1.765 0.762
+##   ..- attr(*, &quot;names&quot;)= chr [1:4] &quot;Sepal.Length&quot; &quot;Sepal.Width&quot; &quot;Petal.Length&quot; &quot;Petal.Width&quot;
+##  $ x       : num [1:150, 1:4] -2.26 -2.07 -2.36 -2.29 -2.38 ...
+##   ..- attr(*, &quot;dimnames&quot;)=List of 2
+##   .. ..$ : NULL
+##   .. ..$ : chr [1:4] &quot;PC1&quot; &quot;PC2&quot; &quot;PC3&quot; &quot;PC4&quot;
+##  - attr(*, &quot;class&quot;)= chr &quot;prcomp&quot;</code></pre>
+<p>The <code>prcomp()</code> command will create a list containing multiple dataframes and vectors:</p>
+<ul>
+<li><p><em>sdev</em>, a vector of the standard deviations for each PC</p></li>
+<li><p><em>rotation</em>, a matrix of the eigenvectors for each variable</p></li>
+<li><p><em>center</em>, a vector of the center value for each variable</p></li>
+<li><p><em>scale</em>, a vector of the scaling factor for each variable</p></li>
+<li><p><em>x</em>, a matrix of the individual PC values for each flower</p></li>
+</ul>
+</div>
+</div>
+<div id="choosing-the-number-of-pcs" class="section level2" number="3.4">
+<h2><span class="header-section-number">3.4</span> Choosing the number of PCs</h2>
+<p>We have now calculated our PCs. In this dataset, we have a limited number of PCs and could choose to use all of them in downstream analysis, but this becomes impractical with high-dimensional data. The majority of the variation in the dataset will be captured by the first few PCs, so common practice is to identify a cutoff for how much variation a PC must explain in order to be included. If the data have been scaled and centered, it is also common to include only those PCs with an eigenvalue greater than or equal to 1.</p>
+<div id="examining-pcs-in-table-format" class="section level3" number="3.4.1">
+<h3><span class="header-section-number">3.4.1</span> Examining PCs in table format</h3>
+<p>Let’s take a look at a table of the eigenvalues and variation captured by each PC first. We’ll use a command from the <code>factoextra</code> package.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="principal-components-analysis.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_eigenvalue</span>(pca.obj)</span></code></pre></div>
+<pre><code>##       eigenvalue variance.percent cumulative.variance.percent
+## Dim.1 2.91849782       72.9624454                    72.96245
+## Dim.2 0.91403047       22.8507618                    95.81321
+## Dim.3 0.14675688        3.6689219                    99.48213
+## Dim.4 0.02071484        0.5178709                   100.00000</code></pre>
+<p>This table tells us the vast majority of the variation is described by just the first two PCs.</p>
+<p>This information can also be calculated in the sdev vector of the <code>pca.obj</code> list. You don’t have to use an additional library like <code>factoextra</code>. Instead, you can convert the standard deviations to variances.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="principal-components-analysis.html#cb8-1" aria-hidden="true" tabindex="-1"></a>pca.obj<span class="sc">$</span>sdev<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> <span class="fu">sum</span>(pca.obj<span class="sc">$</span>sdev<span class="sc">^</span><span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] 0.729624454 0.228507618 0.036689219 0.005178709</code></pre>
+</div>
+<div id="examining-pcs-in-a-scree-plot" class="section level3" number="3.4.2">
+<h3><span class="header-section-number">3.4.2</span> Examining PCs in a scree plot</h3>
+<p>It may be easier to examine this data visually, which we can do using a scree plot (Jollife 2002, Peres-Neto, Jackson, and Somers 2005).</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="principal-components-analysis.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_eig</span>(pca.obj, <span class="at">addlabels =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p><img src="resources/images/05-student-guide_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p>The PCs are on the x-axis, and the y-axis is the percentage of variance explained by each PC. As you can see, the percentage of explained variance drops off dramatically after the first two PCs.</p>
+<p>Going forward, we might choose to use these two variables in our analyses.</p>
+</div>
+</div>
+<div id="correlation-between-variables-and-pcs" class="section level2" number="3.5">
+<h2><span class="header-section-number">3.5</span> Correlation between variables and PCs</h2>
+<p>At some point, we might be interested in knowing which variables are contributing to each PC.</p>
+<div id="examining-the-contribution-of-each-variable-to-pcs-in-table-format" class="section level3" number="3.5.1">
+<h3><span class="header-section-number">3.5.1</span> Examining the contribution of each variable to PCs in table format</h3>
+<p>Let’s first look at this in table form. We first extract the results from our PCA output.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="principal-components-analysis.html#cb11-1" aria-hidden="true" tabindex="-1"></a>var <span class="ot">&lt;-</span> <span class="fu">get_pca_var</span>(pca.obj)</span>
+<span id="cb11-2"><a href="principal-components-analysis.html#cb11-2" aria-hidden="true" tabindex="-1"></a>var</span></code></pre></div>
+<pre><code>## Principal Component Analysis Results for variables
+##  ===================================================
+##   Name       Description                                    
+## 1 &quot;$coord&quot;   &quot;Coordinates for the variables&quot;                
+## 2 &quot;$cor&quot;     &quot;Correlations between variables and dimensions&quot;
+## 3 &quot;$cos2&quot;    &quot;Cos2 for the variables&quot;                       
+## 4 &quot;$contrib&quot; &quot;contributions of the variables&quot;</code></pre>
+<p>The <code>get_pca_var</code> creates a list of matrices with useful information about the PCA. For now, we’re interested in the contribution matrix.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="principal-components-analysis.html#cb13-1" aria-hidden="true" tabindex="-1"></a>var<span class="sc">$</span>contrib</span></code></pre></div>
+<pre><code>##                  Dim.1       Dim.2     Dim.3     Dim.4
+## Sepal.Length 27.150969 14.24440565 51.777574  6.827052
+## Sepal.Width   7.254804 85.24748749  5.972245  1.525463
+## Petal.Length 33.687936  0.05998389  2.019990 64.232089
+## Petal.Width  31.906291  0.44812296 40.230191 27.415396</code></pre>
+<p>This table tells us what percentage of each PC is contributed by each variable. A higher number (or percentage) means a greater contribution by that variable.</p>
+</div>
+<div id="examining-the-contribution-of-each-variable-to-pcs-with-a-correlation-circle" class="section level3" number="3.5.2">
+<h3><span class="header-section-number">3.5.2</span> Examining the contribution of each variable to PCs with a correlation circle</h3>
+<p>We can also visualize this information using a correlation circle.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="principal-components-analysis.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_pca_var</span>(pca.obj, <span class="at">col.var =</span> <span class="st">&quot;black&quot;</span>, <span class="at">repel=</span>T)</span></code></pre></div>
+<p><img src="resources/images/05-student-guide_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p>The size and position of the vectors (arrows) in the correlation circle can tell us quite a lot about the variables.</p>
+<ul>
+<li><p>Positively correlated variables are grouped together.</p></li>
+<li><p>Negatively correlated variables are positioned on opposite sides of the plot origin (opposed quadrants) .</p></li>
+<li><p>Vectors that end close to the circle outline greatly contribute to a given PC.</p></li>
+<li><p>Shorter vectors contribute very little.</p></li>
+<li><p>Vectors that are primarily horizontal mostly contribute to the first PC (the x-axis).</p></li>
+<li><p>Vectors that are more vertical contribute primarily to the second PC (the y-axis).</p></li>
+</ul>
+</div>
+</div>
+<div id="visualizing-structure-using-pcs" class="section level2" number="3.6">
+<h2><span class="header-section-number">3.6</span> Visualizing structure using PCs</h2>
+<p>Sometimes it is helpful to plot the PC coordinates of the individual samples in order to identify any population structure in the dataset.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="principal-components-analysis.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_pca_ind</span>(pca.obj, <span class="at">geom.ind =</span> <span class="st">&quot;point&quot;</span>, <span class="at">mean.point=</span>F)</span></code></pre></div>
+<p><img src="resources/images/05-student-guide_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p>Here we’ve created a scatter plot with the first PC (Dim1) on the x-axis and the second PC (Dim2) on the y-axis. We can clearly see the samples split into 2 clusters. It might be interesting see whether these clusters correspond with iris species (remember, we have that information in the fifth column of the iris data table).</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="principal-components-analysis.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_pca_ind</span>(pca.obj, <span class="at">geom.ind =</span> <span class="st">&quot;point&quot;</span>, <span class="at">mean.point=</span>F,</span>
+<span id="cb17-2"><a href="principal-components-analysis.html#cb17-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">col.ind =</span> iris<span class="sc">$</span>Species,</span>
+<span id="cb17-3"><a href="principal-components-analysis.html#cb17-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">addEllipses =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb17-4"><a href="principal-components-analysis.html#cb17-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">legend.title =</span> <span class="st">&quot;Groups&quot;</span></span>
+<span id="cb17-5"><a href="principal-components-analysis.html#cb17-5" aria-hidden="true" tabindex="-1"></a>             )</span></code></pre></div>
+<p><img src="resources/images/05-student-guide_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p>We used the <code>col.ind</code> option to color the dots by species and the <code>addEllipses</code> option to create an ellipse around the center of each species cluster.</p>
+</div>
+<div id="recap" class="section level2" number="3.7">
+<h2><span class="header-section-number">3.7</span> Recap</h2>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="principal-components-analysis.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
+<pre><code>## R version 4.0.2 (2020-06-22)
+## Platform: x86_64-pc-linux-gnu (64-bit)
+## Running under: Ubuntu 20.04.3 LTS
+## 
+## Matrix products: default
+## BLAS/LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.8.so
+## 
+## locale:
+##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+##  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+##  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=C             
+##  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+##  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+## [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+## [1] factoextra_1.0.7 ggplot2_3.3.2   
+## 
+## loaded via a namespace (and not attached):
+##  [1] tidyselect_1.1.0  xfun_0.26         purrr_0.3.4       haven_2.3.1      
+##  [5] carData_3.0-4     colorspace_1.4-1  vctrs_0.3.4       generics_0.0.2   
+##  [9] htmltools_0.5.0   yaml_2.2.1        rlang_0.4.10      ggpubr_0.4.0     
+## [13] jquerylib_0.1.4   pillar_1.4.6      foreign_0.8-80    glue_1.6.1       
+## [17] withr_2.3.0       readxl_1.3.1      lifecycle_1.0.0   stringr_1.4.0    
+## [21] munsell_0.5.0     ggsignif_0.6.0    gtable_0.3.0      cellranger_1.1.0 
+## [25] zip_2.1.1         evaluate_0.14     labeling_0.3      knitr_1.33       
+## [29] rio_0.5.16        forcats_0.5.0     curl_4.3          highr_0.8        
+## [33] broom_0.7.1       Rcpp_1.0.8        readr_1.4.0       scales_1.1.1     
+## [37] backports_1.1.10  abind_1.4-5       farver_2.0.3      fs_1.5.0         
+## [41] ottrpal_0.1.2     hms_0.5.3         digest_0.6.25     stringi_1.5.3    
+## [45] openxlsx_4.2.2    bookdown_0.24     rstatix_0.6.0     dplyr_1.0.2      
+## [49] ggrepel_0.8.2     grid_4.0.2        tools_4.0.2       magrittr_2.0.2   
+## [53] tibble_3.0.3      crayon_1.3.4      tidyr_1.1.2       car_3.0-10       
+## [57] pkgconfig_2.0.3   ellipsis_0.3.1    data.table_1.13.0 rmarkdown_2.10   
+## [61] R6_2.4.1          compiler_4.0.2</code></pre>
+
+</div>
+</div>
+<hr>
+<center> 
+  <div class="footer">
+      All illustrations <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY. </a>
+      <br>
+      All other materials <a href= "https://creativecommons.org/licenses/by/4.0/"> CC-BY </a> unless noted otherwise.
+  </div>
+</center>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="introduction.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="about-the-authors.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

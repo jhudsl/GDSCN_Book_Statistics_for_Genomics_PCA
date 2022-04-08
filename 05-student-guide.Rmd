@@ -2,9 +2,7 @@
 ottrpal::set_knitr_image_path()
 ```
 
-# Principal Components Analysis
-
-This chapter contains the student instructions for the Principal Components Analysis activity.
+#(PART\*) PRINCIPAL COMPONENTS ANALYSIS {-}
 
 ## Before You Start
 
@@ -12,7 +10,7 @@ Make sure you can start an RStudio session on AnVIL. Take a look at our guide [h
 
 ### Libraries
 
-We will be using the `prcomp()` command which comes loaded into baseR, as well as the `[factoextra package](https://www.rdocumentation.org/packages/factoextra/versions/1.0.7)` for visualization. You can install the `factoextra` package using the install.packages command.
+We will be using the `prcomp()` command which comes loaded into baseR, as well as the [`factoextra` package](https://www.rdocumentation.org/packages/factoextra/versions/1.0.7) for visualization. You can install the `factoextra` package using the install.packages command.
 
 ```{r, warning = FALSE, message = FALSE, echo = FALSE}
 # Needed for GHA
@@ -21,7 +19,6 @@ install.packages("factoextra")
 
 ```{r}
 # Install and load factoextra
-# AnVIL::install(c("factoextra"))
 library(factoextra)
 ```
 
@@ -37,14 +34,18 @@ The first PCs will capture most heterogeneity (and thus most of the signal) in o
 ::: {.fyi}
 GOING DEEPER: The math behind PCA
 
-PCA is a method of matrix factorization. Essentially, the PCA approach allows a researcher to break down (or decompose) a large data matrix into smaller constituent parts (similar to the way we can break the number 30 into the factors 5 and 6). Each smaller matrix can be summarized by a vector, called the eigenvector. The variance of the eigenvector is called the eigenvalue. For a large matrix (like most biological datasets), there are many possible ways to decompose the matrix. In our example earlier with the number 30 we could choose to start with the number 5 or the number 6. With PCA, We always start with the eigenvector that has the largest eigenvalue. This eigenvector is what we call the first PC. What is left of the original data matrix is then decomposed further into smaller and smaller pieces, with each subsequent eigenvector chosen because it has the largest possible eigenvalue.
+PCA is a method of matrix factorization. Essentially, the PCA approach allows a researcher to break down (or decompose) a large data matrix into smaller constituent parts (similar to the way we can break the number 30 into the factors 5 and 6). Each smaller matrix can be summarized by a vector, called the eigenvector. This vector can be resized; how much it is resized can be summarized by a number called the eigenvalue. 
+
+For a large matrix (like most biological datasets), there are many possible ways to decompose the matrix. In our example earlier with the number 30 we could choose to start with the number 5 or the number 6. With PCA, We always start with the eigenvector that has the largest eigenvalue. This eigenvector is what we call the first PC. What is left of the original data matrix is then decomposed further into smaller and smaller pieces, with each subsequent eigenvector chosen because it has the largest possible eigenvalue.
 
 The PC variables created by this method are a linear combination of the original variables.
 
 :::
 
 
-## Exercise One: Calculating PCs
+## Calculating PCs
+
+###Examining the data
 
 There are many packages available for R and RStudio that can perform PCA. These packages will calculate PCA in similar ways, although some of their default parameters (such as how many PCs the algorithm will calculate and store) may be different. Be sure to read the manuals for any package you choose to use.
 
@@ -58,6 +59,8 @@ head(iris)
 
 Each row represents a single individual flower. The first four columns are _active variables_, or the variables we will use for the principal components analysis. The fifth column is the species of each individual ( _Iris setosa_, _Iris virginica_, or _Iris versicolor_). This is a _supplementary variable_, or additional information about each sample that we will not use in the PCA.
 
+### Calculating the PCs
+
 The actual PCA calculation is quite simple. We specify the calculations are only done on the first four columns of the iris dataset, and we are also scaling each variable so the mean is 0 and the standard deviation is 1.
 
 ```{r}
@@ -65,19 +68,21 @@ pca.obj <- prcomp(iris[1:4], scale=T)
 str(pca.obj)
 ```
 
-The `prcomp() command will create a list containing multiple dataframes and vectors: 
-  `_sdev_`, a vector of the standard deviations for each PC
-  _rotation_, a matrix of the eigenvectors for each variable
-  _center_, a vector of the center value for each variable
-  _scale_, a vector of the scaling factor for each variable
-  _x_, a matrix of the individual PC values for each flower
+The `prcomp()` command will create a list containing multiple dataframes and vectors: 
+  -_sdev_, a vector of the standard deviations for each PC
+  -_rotation_, a matrix of the eigenvectors for each variable
+  -_center_, a vector of the center value for each variable
+  -_scale_, a vector of the scaling factor for each variable
+  -_x_, a matrix of the individual PC values for each flower
 
 
-## Exercise Two: Choosing the number of PCs
+## Choosing the number of PCs
 
 We have now calculated our PCs. In this dataset, we have a limited number of PCs and could choose to use all of them in downstream analysis, but this becomes impractical with high-dimensional data. The majority of the variation in the dataset will be captured by the first few PCs, so common practice is to identify a cutoff for how much variation a PC must explain in order to be included. If the data have been scaled and centered, it is also common to include only those PCs with an eigenvalue greater than or equal to 1. 
 
-For the iris dataset, we can look at this in either table format or using a scree plot. Let's take a look at a table of the eigenvalues and variation captured by each PC first. We'll use a command from the factoextra package.
+### Examining PCs in table format
+
+Let's take a look at a table of the eigenvalues and variation captured by each PC first. We'll use a command from the `factoextra` package.
 
 ```{r}
 get_eigenvalue(pca.obj)
@@ -85,11 +90,13 @@ get_eigenvalue(pca.obj)
 
 This table tells us the vast majority of the variation is described by just the first two PCs. 
 
-This information can also be calculated in the sdev vector of the pca.obj list. You don't have to use an additional library like factoextra. Instead, you can convert the standard deviations to variances.
+This information can also be calculated in the sdev vector of the `pca.obj` list. You don't have to use an additional library like `factoextra`. Instead, you can convert the standard deviations to variances.
 
 ```{r}
 pca.obj$sdev^2 / sum(pca.obj$sdev^2)
 ```
+
+### Examining PCs in a scree plot
 
 It may be easier to examine this data visually, which we can do using a scree plot (Jollife 2002, Peres-Neto, Jackson, and Somers 2005).
 
@@ -101,16 +108,20 @@ The PCs are on the x-axis, and the y-axis is the percentage of variance explaine
 
 Going forward, we might choose to use these two variables in our analyses.
 
-## Exercise Three: Correlation between variables and PCs
+## Correlation between variables and PCs
 
-At some point, we might be interested in knowing which variables are contributing to each PC. Let's first look at this in table form. We first extract the results from our PCA output.
+At some point, we might be interested in knowing which variables are contributing to each PC. 
+
+### Examining the contribution of each variable to PCs in table format
+
+Let's first look at this in table form. We first extract the results from our PCA output.
 
 ```{r}
 var <- get_pca_var(pca.obj)
 var
 ```
 
-The get_pca_var creates a list of matrices with useful information about the PCA. For now, we're interested in the contribution matrix.
+The `get_pca_var` creates a list of matrices with useful information about the PCA. For now, we're interested in the contribution matrix.
 
 ```{r}
 var$contrib
@@ -118,6 +129,7 @@ var$contrib
 
 This table tells us what percentage of each PC is contributed by each variable. A higher number (or percentage) means a greater contribution by that variable.
 
+### Examining the contribution of each variable to PCs with a correlation circle
 
 We can also visualize this information using a correlation circle.
 
@@ -127,17 +139,17 @@ fviz_pca_var(pca.obj, col.var = "black", repel=T)
 
 The size and position of the vectors (arrows) in the correlation circle can tell us quite a lot about the variables.
   
-  Positively correlated variables are grouped together.
-  Negatively correlated variables are positioned on opposite sides of the plot origin (opposed quadrants) .
+  -Positively correlated variables are grouped together.
+  -Negatively correlated variables are positioned on opposite sides of the plot origin (opposed quadrants) .
   
-  Vectors that end close to the circle outline greatly contribute to a given PC.
-  Shorter vectors contribute very little.
+  -Vectors that end close to the circle outline greatly contribute to a given PC.
+  -Shorter vectors contribute very little.
   
-  Vectors that are primarily horizontal mostly contribute to the first PC (the x-axis). 
-  Vectors that are more vertical contribute primarily to the second PC (the y-axis).
+  -Vectors that are primarily horizontal mostly contribute to the first PC (the x-axis). 
+  -Vectors that are more vertical contribute primarily to the second PC (the y-axis).
 
 
-## Exercise Four: Visualizing structure using PCs
+## Visualizing structure using PCs
 
 Sometimes it is helpful to plot the PC coordinates of the individual samples in order to identify any population structure in the dataset.
 
@@ -155,11 +167,11 @@ fviz_pca_ind(pca.obj, geom.ind = "point", mean.point=F,
              )
 ```
 
-We used the col.ind option to color the dots by species and the `addEllipses` option to create an ellipse around the center of each species cluster. 
+We used the `col.ind` option to color the dots by species and the `addEllipses` option to create an ellipse around the center of each species cluster. 
 
 ## Recap
 
 ```{r}
-devtools::session_info()
+sessionInfo()
 ```
 

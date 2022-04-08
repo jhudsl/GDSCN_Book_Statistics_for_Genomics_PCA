@@ -20,6 +20,7 @@ install.packages("factoextra")
 
 ```{r}
 # Install and load factoextra
+# AnVIL::install("factoextra")
 library(factoextra)
 ```
 

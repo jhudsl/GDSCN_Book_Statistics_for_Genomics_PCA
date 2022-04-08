@@ -1,0 +1,189 @@
+```{r, include = FALSE}
+ottrpal::set_knitr_image_path()
+```
+
+
+# Principal Components Analysis
+
+## Before You Start
+
+Make sure you can start an RStudio session on AnVIL. Take a look at our guide [here](https://jhudatascience.org/GDSCN_Book_Statistics_for_Genomics_Differential_Expression/getting-set-up.html#introduction).
+
+### Libraries
+
+We will be using the `prcomp()` command which comes loaded into baseR, as well as the [`factoextra` package](https://www.rdocumentation.org/packages/factoextra/versions/1.0.7) for visualization. You can install the `factoextra` package using the install.packages command.
+
+```{r, warning = FALSE, message = FALSE, echo = FALSE}
+# Needed for GHA
+install.packages("factoextra")
+```
+
+```{r, warning = FALSE, message = FALSE}
+# Install and load factoextra
+# AnVIL::install("factoextra")
+library(factoextra)
+```
+
+## Introduction
+
+Principal components analysis (PCA) is one of the oldest and most commonly used dimensional reduction techniques. PCA is an unsupervised machine learning algorithm that combines correlated dimensions into a single new variable. This new variable represents an axis or line in the dataset that describes the maximum amount of variation and becomes the first principal component (PC). After the first PC is created, the algorithm then identifies a new axis that is orthagonal (statistically independent) to the first PC while also describing the maximum amount of previously undescribed variation. 
+
+This process continues, with each PC capturing a decreasing amount of variation, until the maximum number of PCS is reached (max number of PCs = total number of variables in the original dataset). 
+
+The first PCs will capture most heterogeneity (and thus most of the signal) in our high-dimensional dataset by definition, while the variation in later PCs will mostly represent noise. Thus, we can use the first PCs to both examine structure in our dataset as well as for downstream analyses to reduce computational work and improve the fit of our statistical models.
+
+
+::: {.fyi}
+GOING DEEPER: The math behind PCA
+
+PCA is a method of matrix factorization. Essentially, the PCA approach allows a researcher to break down (or decompose) a large data matrix into smaller constituent parts (similar to the way we can break the number 30 into the factors 5 and 6). Each smaller matrix can be summarized by a vector, called the eigenvector. This vector can be resized; how much it is resized can be summarized by a number called the eigenvalue. You can also think of the eigenvalue as the variance of the eigenvector. 
+
+For a large matrix (like most biological datasets), there are many possible ways to decompose the matrix. In our example earlier with the number 30 we could choose to start with the number 5 or the number 6. With PCA, We always start with the eigenvector that has the largest possible eigenvalue. This eigenvector is what we call the first PC. What is left of the original data matrix is then decomposed further into smaller and smaller pieces, with each subsequent eigenvector chosen because it has the largest possible eigenvalue.
+
+The PC variables created by this method are a linear combination of the original variables.The commands in this exercise use the Singular Value Decomposition (SVD) algorithm for matrix factorization. SVD breaks a large matrix down into three smaller matrices and works on both non-symmetric and symmetric matrices. 
+
+
+If you'd like to learn more, check out [Principal component analysis: a review and recent developments](www.ncbi.nlm.nih.gov/pmc/articles/PMC4792409/) or [Understanding Singular Value Decomposition](https://towardsdatascience.com/understanding-singular-value-decomposition-and-its-application-in-data-science-388a54be95d#:~:text=In%20linear%20algebra%2C%20the%20Singular%20Value%20Decomposition%20%28SVD%29,also%20has%20some%20important%20applications%20in%20data%20science).
+:::
+
+
+## Calculating PCs
+
+### Examining the data
+
+There are many packages available for R and RStudio that can perform PCA. These packages will calculate PCA in similar ways, although some of their default parameters (such as how many PCs the algorithm will calculate and store) may be different. Be sure to read the manuals for any package you choose to use.
+
+For this example, we will use the iris dataset that is preloaded into R. The statistician RA Fisher popularized this dataset for statistical work, although the original data was collected by Edgar Anderson. The dataset contains 4 measurements (petal length, petal width, sepal length, and sepal width) for 150 individuals from 3 different iris species.
+
+Let's start by looking at the first few rows of the dataset.
+
+```{r}
+head(iris)
+```
+
+Each row represents a single individual flower. The first four columns are _active variables_, or the variables we will use for the principal components analysis. The fifth column is the species of each individual ( _Iris setosa_, _Iris virginica_, or _Iris versicolor_). This is a _supplementary variable_, or additional information about each sample that we will not use in the PCA.
+
+### Calculating the PCs
+
+The actual PCA calculation is quite simple. We specify the calculations are only done on the first four columns of the iris dataset, and we are also scaling each variable so the mean is 0 and the standard deviation is 1.
+
+```{r}
+pca.obj <- prcomp(iris[1:4], scale=T)
+str(pca.obj)
+```
+
+The `prcomp()` command will create a list containing multiple dataframes and vectors: 
+
+  - _sdev_, a vector of the standard deviations for each PC
+
+  - _rotation_, a matrix of the eigenvectors for each variable
+  
+  - _center_, a vector of the center value for each variable
+  
+  - _scale_, a vector of the scaling factor for each variable
+  
+  - _x_, a matrix of the individual PC values for each flower
+
+
+## Choosing the number of PCs
+
+We have now calculated our PCs. In this dataset, we have a limited number of PCs and could choose to use all of them in downstream analysis, but this becomes impractical with high-dimensional data. The majority of the variation in the dataset will be captured by the first few PCs, so common practice is to identify a cutoff for how much variation a PC must explain in order to be included. If the data have been scaled and centered, it is also common to include only those PCs with an eigenvalue greater than or equal to 1. 
+
+### Examining PCs in table format
+
+Let's take a look at a table of the eigenvalues and variation captured by each PC first. We'll use a command from the `factoextra` package.
+
+```{r}
+get_eigenvalue(pca.obj)
+```
+
+This table tells us the vast majority of the variation is described by just the first two PCs. 
+
+This information can also be calculated in the sdev vector of the `pca.obj` list. You don't have to use an additional library like `factoextra`. Instead, you can convert the standard deviations to variances.
+
+```{r}
+pca.obj$sdev^2 / sum(pca.obj$sdev^2)
+```
+
+### Examining PCs in a scree plot
+
+It may be easier to examine this data visually, which we can do using a scree plot (Jollife 2002, Peres-Neto, Jackson, and Somers 2005).
+
+```{r}
+fviz_eig(pca.obj, addlabels = TRUE)
+```
+
+The PCs are on the x-axis, and the y-axis is the percentage of variance explained by each PC. As you can see, the percentage of explained variance drops off dramatically after the first two PCs.
+
+Going forward, we might choose to use these two variables in our analyses.
+
+## Correlation between variables and PCs
+
+At some point, we might be interested in knowing which variables are contributing to each PC. 
+
+### Examining the contribution of each variable to PCs in table format
+
+Let's first look at this in table form. We first extract the results from our PCA output.
+
+```{r}
+var <- get_pca_var(pca.obj)
+var
+```
+
+The `get_pca_var` creates a list of matrices with useful information about the PCA. For now, we're interested in the contribution matrix.
+
+```{r}
+var$contrib
+```
+
+This table tells us what percentage of each PC is contributed by each variable. A higher number (or percentage) means a greater contribution by that variable.
+
+### Examining the contribution of each variable to PCs with a correlation circle
+
+We can also visualize this information using a correlation circle.
+
+```{r}
+fviz_pca_var(pca.obj, col.var = "black", repel=T)
+```
+
+The size and position of the vectors (arrows) in the correlation circle can tell us quite a lot about the variables.
+  
+  - Positively correlated variables are grouped together.
+
+  - Negatively correlated variables are positioned on opposite sides of the plot origin (opposed quadrants) .
+  
+  - Vectors that end close to the circle outline greatly contribute to a given PC.
+
+  - Shorter vectors contribute very little.
+  
+  - Vectors that are primarily horizontal mostly contribute to the first PC (the x-axis). 
+
+  - Vectors that are more vertical contribute primarily to the second PC (the y-axis).
+
+
+## Visualizing structure using PCs
+
+Sometimes it is helpful to plot the PC coordinates of the individual samples in order to identify any population structure in the dataset.
+
+```{r}
+fviz_pca_ind(pca.obj, geom.ind = "point", mean.point=F)
+```
+
+Here we've created a scatter plot with the first PC (Dim1) on the x-axis and the second PC (Dim2) on the y-axis. We can clearly see the samples split into 2 clusters. It might be interesting see whether these clusters correspond with iris species (remember, we have that information in the fifth column of the iris data table).
+
+```{r}
+fviz_pca_ind(pca.obj, geom.ind = "point", mean.point=F,
+             col.ind = iris$Species,
+             addEllipses = TRUE,
+             legend.title = "Groups"
+             )
+```
+
+We used the `col.ind` option to color the dots by species and the `addEllipses` option to create an ellipse around the center of each species cluster. 
+
+## Recap
+
+```{r}
+sessionInfo()
+```
+

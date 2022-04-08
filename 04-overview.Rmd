@@ -1,4 +1,4 @@
-# (PART\*) DIMENSIONALITY REDUCTION OVERVIEW {-}
+# Introduction
 
 ## The difficulties of high-dimensional datasets
 

@@ -57,8 +57,6 @@ jobs:
         run: |
           sudo apt-get install libcurl4-openssl-dev
 
-          rm resources/AnVIL_repos.tsv
-
           # Run repo check script
           Rscript --vanilla "scripts/anvil_repo_check.R" --git_pat "$GH_PAT"
 

@@ -1,13 +1,13 @@
 ---
 title: "Statistics for Genomics: PCA"
-date: "August 15, 2022"
+date: "September 01, 2022"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: book.bib
 biblio-style: apalike
 link-citations: yes
 description: Description about Course/Book.
-favicon: assets/anvil_favicon.ico
+favicon: assets/GDSCN_style/gdscn_favicon.ico
 ---
 
 
@@ -56,8 +56,12 @@ Please check out our full collection of AnVIL and related resources below!
    <td style="text-align:left;"> https://jhudatascience.org/GDSCN_Book_Statistics_for_Genomics_RNA-seq </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> GDSCN: Statistics for Genomics SCRNA-seq </td>
-   <td style="text-align:left;"> https://jhudatascience.org/GDSCN_Book_Statistics_for_Genomics_SCRNA-seq </td>
+   <td style="text-align:left;"> GDSCN: Statistics for Genomics scRNA-seq </td>
+   <td style="text-align:left;"> https://jhudatascience.org/GDSCN_Book_Statistics_for_Genomics_scRNA-seq </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> phylogenetic-techniques </td>
+   <td style="text-align:left;"> https://jhudatascience.org/phylogenetic-techniques </td>
   </tr>
 </tbody>
 </table>

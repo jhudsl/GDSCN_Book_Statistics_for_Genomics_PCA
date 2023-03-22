@@ -1,6 +1,6 @@
 ---
 title: "Statistics for Genomics: PCA"
-date: "September 01, 2022"
+date: "March 22, 2023"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: book.bib
@@ -10,58 +10,22 @@ description: Description about Course/Book.
 favicon: assets/GDSCN_style/gdscn_favicon.ico
 ---
 
-
 # About this Book {-}
 
-This book is part of a series of books for the Genomic Data Science Analysis, Visualization, and Informatics Lab-space (AnVIL) of the National Human Genome Research Institute (NHGRI). Learn more about AnVIL by visiting `https://anvilproject.org` or reading the [article in Cell Genomics](https://www.sciencedirect.com/science/article/pii/S2666979X21001063).
+This book is intended to introduce principle component analysis (PCA) in genomics research.
 
-## AnVIL Collection {-}
+## Skills Level {-} 
 
-Please check out our full collection of AnVIL and related resources below!
+::: {.notice}
+_Genetics_
+<!-- **Intermediate**: some genetics knowledge needed -->
 
-<table>
- <thead>
-  <tr>
-   <th style="text-align:left;"> Book Name </th>
-   <th style="text-align:left;"> Link </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> AnVIL: Getting Started </td>
-   <td style="text-align:left;"> https://jhudatascience.org/AnVIL_Book_Getting_Started </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> AnVIL: Instructor Guide </td>
-   <td style="text-align:left;"> https://jhudatascience.org/AnVIL_Book_Instructor_Guide </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> AnVIL: WDL </td>
-   <td style="text-align:left;"> https://jhudatascience.org/AnVIL_Book_WDL </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> GDSCN: SARS Galaxy on AnVIL </td>
-   <td style="text-align:left;"> https://jhudatascience.org/GDSCN_Book_SARS_Galaxy_on_AnVIL </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> GDSCN: Statistics for Genomics Differential Expression </td>
-   <td style="text-align:left;"> https://jhudatascience.org/GDSCN_Book_Statistics_for_Genomics_Differential_Expression </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> GDSCN: Statistics for Genomics PCA </td>
-   <td style="text-align:left;"> https://jhudatascience.org/GDSCN_Book_Statistics_for_Genomics_PCA </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> GDSCN: Statistics for Genomics RNA-seq </td>
-   <td style="text-align:left;"> https://jhudatascience.org/GDSCN_Book_Statistics_for_Genomics_RNA-seq </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> GDSCN: Statistics for Genomics scRNA-seq </td>
-   <td style="text-align:left;"> https://jhudatascience.org/GDSCN_Book_Statistics_for_Genomics_scRNA-seq </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> phylogenetic-techniques </td>
-   <td style="text-align:left;"> https://jhudatascience.org/phylogenetic-techniques </td>
-  </tr>
-</tbody>
-</table>
+_Programming skills_
+<!-- **Beginner**: some programming experience helpful -->
+:::
+
+## GDSCN Collection {-}
+
+This exercise is part of a collection of teaching resources developed through the *Genomic Data Science Community Network* (GDSCN). GDSCN works towards a vision where researchers, educators, and students from diverse backgrounds are able to fully participate in genomic data science research.  Learn more about GDSCN by visiting https://www.gdscn.org/home or reading the [article in Genome Research](https://doi.org/10.1101/gr.276496.121).
+
+Please check out our full collection of AnVIL and related resources: https://hutchdatascience.org/AnVIL_Collection/

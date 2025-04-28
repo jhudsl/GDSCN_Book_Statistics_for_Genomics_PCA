@@ -1,0 +1,3 @@
+bookdown::word_document2:
+  toc: truebookdown::word_document2:
+  toc: true

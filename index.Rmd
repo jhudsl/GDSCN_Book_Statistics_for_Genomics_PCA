@@ -30,4 +30,3 @@ This exercise is part of a collection of teaching resources developed through th
 
 Please check out our full collection of AnVIL and related resources: https://hutchdatascience.org/AnVIL_Collection/
 
-
